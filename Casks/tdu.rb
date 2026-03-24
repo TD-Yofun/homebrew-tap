@@ -14,22 +14,22 @@ cask "tdu" do
   on_macos do
     on_intel do
       url "https://github.com/TD-Yofun/tdu-cli/releases/download/v#{version}/tdu-cli_#{version}_darwin_amd64.tar.gz"
-      sha256 "21900117e0d930efdaf0006bee80f0c1ff543f836a48f97747f1b1aa386bdc34"
+      sha256 "09706e9c1ee4a2cff13a5dd9572447625786079601525754cee14f57c56c545d"
     end
     on_arm do
       url "https://github.com/TD-Yofun/tdu-cli/releases/download/v#{version}/tdu-cli_#{version}_darwin_arm64.tar.gz"
-      sha256 "d2da51aeec280e12f5c820539882eb86739ae28ab6854cf6295ff1e05a126f70"
+      sha256 "c0c62cd6811a944ce9303c651cc64b511dfc1f4c18621ec72846af667b3ae76c"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/TD-Yofun/tdu-cli/releases/download/v#{version}/tdu-cli_#{version}_linux_amd64.tar.gz"
-      sha256 "ee8b3399d6ba342f5c518c5383e5200bd03ef5db497b539fbd4b351d56aa3335"
+      sha256 "33ba3f60260d11038bff2df92adb665751dcb123a37682bdba211818567fcac8"
     end
     on_arm do
       url "https://github.com/TD-Yofun/tdu-cli/releases/download/v#{version}/tdu-cli_#{version}_linux_arm64.tar.gz"
-      sha256 "b3e4a3bfc56baf67938cdee97267574d3d01ed6fc17a32ff6f58743d75b02557"
+      sha256 "b8cae7d48c99696f9b90c4693fdb0e0c265bb4f0d8a9b43658555862336a9143"
     end
   end
 
