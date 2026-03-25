@@ -28,7 +28,7 @@ cask "tdu" do
   name "tdu"
   desc "talkdesk utils - a collection of daily work utilities"
   homepage "https://github.com/TD-Yofun/tdu-cli"
-  version "0.1.1"
+  version "0.2.0"
 
   livecheck do
     skip "Auto-generated on release."
@@ -44,7 +44,7 @@ cask "tdu" do
           "Authorization: Bearer #{GitHubPrivateRepo.token}",
           "X-GitHub-Api-Version: 2022-11-28",
         ]
-      sha256 "f0ebfb318cceadb14f195c552d8b1841b1b103bc107a9d5424102431cfe217b5"
+      sha256 "4e0a787f267f903f76726f63f62c1f13ba2ed06a96017a872cfc46b687aea2bd"
     end
     on_arm do
       url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_darwin_arm64.tar.gz")}",
@@ -53,7 +53,7 @@ cask "tdu" do
           "Authorization: Bearer #{GitHubPrivateRepo.token}",
           "X-GitHub-Api-Version: 2022-11-28",
         ]
-      sha256 "e2ada6a04ffdedb17f7f643532008fa547d427cbdb459caa7b5fc4c13cb6beda"
+      sha256 "39479d8b56dab85b0644bc0129ef271a880e2765f9555b7e1ce4a1fcec4869f1"
     end
   end
 
@@ -65,7 +65,7 @@ cask "tdu" do
           "Authorization: Bearer #{GitHubPrivateRepo.token}",
           "X-GitHub-Api-Version: 2022-11-28",
         ]
-      sha256 "b499aed874bd335d4b367ad96b95951028e33d994240115c07f8866fa62b2416"
+      sha256 "f47ab3172a59b29fd16f1320873ddc6bfddb261448fb3530977e0c6b954a2dee"
     end
     on_arm do
       url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_linux_arm64.tar.gz")}",
@@ -74,7 +74,7 @@ cask "tdu" do
           "Authorization: Bearer #{GitHubPrivateRepo.token}",
           "X-GitHub-Api-Version: 2022-11-28",
         ]
-      sha256 "30aacebca0a661da5fc3ce012da906178a07c47ad7eed165847918f8c1775f6c"
+      sha256 "b391de751e564cac1befa9d2d63baf20bd3cde1a01603d8d301b3a1889c7a5ef"
     end
   end
 
