@@ -13,13 +13,17 @@ cask "tdu" do
       require "uri"
 
       uri = URI.parse("https://api.github.com/repos/TD-Yofun/tdu-cli/releases/tags/#{tag}")
-      resp = Net::HTTP.get(uri, {
-        "Accept" => "application/vnd.github+json",
-        "Authorization" => "Bearer #{token}",
-        "X-GitHub-Api-Version" => "2022-11-28"
-      })
-      release = JSON.parse(resp)
-      asset = release["assets"].find { |a| a["name"] == name }
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      request = Net::HTTP::Get.new(uri)
+      request["Accept"] = "application/vnd.github+json"
+      request["Authorization"] = "Bearer #{token}"
+      request["X-GitHub-Api-Version"] = "2022-11-28"
+      response = http.request(request)
+      release = JSON.parse(response.body)
+      assets = release["assets"]
+      raise "No assets found in release #{tag}. Check your HOMEBREW_GITHUB_API_TOKEN has access to TD-Yofun/tdu-cli." if assets.nil?
+      asset = assets.find { |a| a["name"] == name }
       raise "Asset #{name} not found in release #{tag}" if asset.nil?
       asset["url"]
     end
@@ -28,7 +32,7 @@ cask "tdu" do
   name "tdu"
   desc "talkdesk utils - a collection of daily work utilities"
   homepage "https://github.com/TD-Yofun/tdu-cli"
-  version "0.2.0"
+  version "0.2.1"
 
   livecheck do
     skip "Auto-generated on release."
@@ -44,7 +48,7 @@ cask "tdu" do
           "Authorization: Bearer #{GitHubPrivateRepo.token}",
           "X-GitHub-Api-Version: 2022-11-28",
         ]
-      sha256 "4e0a787f267f903f76726f63f62c1f13ba2ed06a96017a872cfc46b687aea2bd"
+      sha256 "82c989482f3d7aabd41719916eff1fae4cbb75c061b798d982f2dc69ab3a0c19"
     end
     on_arm do
       url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_darwin_arm64.tar.gz")}",
@@ -53,7 +57,7 @@ cask "tdu" do
           "Authorization: Bearer #{GitHubPrivateRepo.token}",
           "X-GitHub-Api-Version: 2022-11-28",
         ]
-      sha256 "39479d8b56dab85b0644bc0129ef271a880e2765f9555b7e1ce4a1fcec4869f1"
+      sha256 "91777b8467e2dc006dea81bfb58795ffec4bca9918b52c8dbb7dc0eda1a584b7"
     end
   end
 
@@ -65,7 +69,7 @@ cask "tdu" do
           "Authorization: Bearer #{GitHubPrivateRepo.token}",
           "X-GitHub-Api-Version: 2022-11-28",
         ]
-      sha256 "f47ab3172a59b29fd16f1320873ddc6bfddb261448fb3530977e0c6b954a2dee"
+      sha256 "c421bec4bf9168d849020020c877971124464e6df723c0ecaf28560a3c2fda1c"
     end
     on_arm do
       url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_linux_arm64.tar.gz")}",
@@ -74,7 +78,7 @@ cask "tdu" do
           "Authorization: Bearer #{GitHubPrivateRepo.token}",
           "X-GitHub-Api-Version: 2022-11-28",
         ]
-      sha256 "b391de751e564cac1befa9d2d63baf20bd3cde1a01603d8d301b3a1889c7a5ef"
+      sha256 "842649bc8e9e34d52688db3ccfaa91e7a7d06b2c8aaf4dd2f62fa7d00b88fe17"
     end
   end
 
