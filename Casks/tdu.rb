@@ -29,10 +29,53 @@ cask "tdu" do
     end
   end
 
+  version "0.2.3"
+
+  on_macos do
+    on_intel do
+      sha256 "7bcac626a704bc73e774c1ec19d18771db1825b3b44f8068a300926b85bdf76c"
+      url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_darwin_amd64.tar.gz")}",
+        header: [
+          "Accept: application/octet-stream",
+          "Authorization: Bearer #{GitHubPrivateRepo.token}",
+          "X-GitHub-Api-Version: 2022-11-28",
+        ]
+    end
+    on_arm do
+      sha256 "d53c6568961bd94bc8a45a05b4d387170d104b0d153f49c12306cf3ddd0d52b7"
+      url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_darwin_arm64.tar.gz")}",
+        header: [
+          "Accept: application/octet-stream",
+          "Authorization: Bearer #{GitHubPrivateRepo.token}",
+          "X-GitHub-Api-Version: 2022-11-28",
+        ]
+    end
+  end
+
+  on_linux do
+    on_intel do
+      sha256 "f889d816c9838d43e690991720438850698f0411bf16f99477bc77b18d145080"
+      url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_linux_amd64.tar.gz")}",
+        header: [
+          "Accept: application/octet-stream",
+          "Authorization: Bearer #{GitHubPrivateRepo.token}",
+          "X-GitHub-Api-Version: 2022-11-28",
+        ]
+    end
+    on_arm do
+      sha256 "963f001beb4541ed8c473cb2340fa3ab3cf1c0516d57d173b7df1d3eda0d2dc9"
+      url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_linux_arm64.tar.gz")}",
+        header: [
+          "Accept: application/octet-stream",
+          "Authorization: Bearer #{GitHubPrivateRepo.token}",
+          "X-GitHub-Api-Version: 2022-11-28",
+        ]
+    end
+  end
+
   name "tdu"
   desc "talkdesk utils - a collection of daily work utilities"
   homepage "https://github.com/TD-Yofun/tdu-cli"
-  version "0.2.2"
 
   livecheck do
     skip "Auto-generated on release."
@@ -40,60 +83,18 @@ cask "tdu" do
 
   binary "tdu"
 
-  on_macos do
-    on_intel do
-      url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_darwin_amd64.tar.gz")}",
-        header: [
-          "Accept: application/octet-stream",
-          "Authorization: Bearer #{GitHubPrivateRepo.token}",
-          "X-GitHub-Api-Version: 2022-11-28",
-        ]
-      sha256 "e86903aba931978b7c0317508105de54becff9a7bd8b7e5d40a5da7980337a83"
-    end
-    on_arm do
-      url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_darwin_arm64.tar.gz")}",
-        header: [
-          "Accept: application/octet-stream",
-          "Authorization: Bearer #{GitHubPrivateRepo.token}",
-          "X-GitHub-Api-Version: 2022-11-28",
-        ]
-      sha256 "123dc1e88aa0895dffe0ea20d35dee8047a438040eff8712075c071dcdf60feb"
-    end
-  end
-
-  on_linux do
-    on_intel do
-      url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_linux_amd64.tar.gz")}",
-        header: [
-          "Accept: application/octet-stream",
-          "Authorization: Bearer #{GitHubPrivateRepo.token}",
-          "X-GitHub-Api-Version: 2022-11-28",
-        ]
-      sha256 "dd538f673bb48c1b9d91571aa6a66a67b0e09c1ec5629b38f5857c0548195cc8"
-    end
-    on_arm do
-      url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_linux_arm64.tar.gz")}",
-        header: [
-          "Accept: application/octet-stream",
-          "Authorization: Bearer #{GitHubPrivateRepo.token}",
-          "X-GitHub-Api-Version: 2022-11-28",
-        ]
-      sha256 "a8431bc2db737fc7494bdaa54149403e3fecc9c987a6aa8e4777429e7bad703e"
-    end
-  end
-
   postflight do
     if OS.mac?
       system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/tdu"]
     end
   end
 
-  caveats do
-    "This cask downloads from a private GitHub repository."
-    "You must set HOMEBREW_GITHUB_API_TOKEN in your shell profile:"
-    ""
-    "  export HOMEBREW_GITHUB_API_TOKEN=your_github_personal_access_token"
-  end
-
   # No zap stanza required
+
+  caveats <<~EOS
+    This cask downloads from a private GitHub repository.
+    You must set HOMEBREW_GITHUB_API_TOKEN in your shell profile:
+
+      export HOMEBREW_GITHUB_API_TOKEN=your_github_personal_access_token
+  EOS
 end
