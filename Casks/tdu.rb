@@ -29,11 +29,11 @@ cask "tdu" do
     end
   end
 
-  version "0.2.4"
+  version "0.3.0"
 
   on_macos do
     on_intel do
-      sha256 "1cfb1ec48d4caaa56fb81a4230bc61615b15578710fdfaf551be8b5513492708"
+      sha256 "75e499b1c9a1c37f40365af88e39a5e8137b0157d996e6ce11d2c5e00c6141b5"
       url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_darwin_amd64.tar.gz")}",
         header: [
           "Accept: application/octet-stream",
@@ -42,7 +42,7 @@ cask "tdu" do
         ]
     end
     on_arm do
-      sha256 "fef300a770aab0193f8d178b06d4eb3ca4b32505a725f57a5b939c36e31eaed7"
+      sha256 "85ceaf92bd1388bc9834e1cd360a13cd8024a8ef3669d45d7de90f38fc15ce7c"
       url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_darwin_arm64.tar.gz")}",
         header: [
           "Accept: application/octet-stream",
@@ -54,7 +54,7 @@ cask "tdu" do
 
   on_linux do
     on_intel do
-      sha256 "c1a5d212047c58bcd0fa4fc69bc7351ade7067634e42087761cdc55cc0356fc5"
+      sha256 "c108313026a4ba03ac7cc6decfaa3a12a5d2da1f998a5a7bb001f3bb90b729eb"
       url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_linux_amd64.tar.gz")}",
         header: [
           "Accept: application/octet-stream",
@@ -63,7 +63,7 @@ cask "tdu" do
         ]
     end
     on_arm do
-      sha256 "9ff1a4c3ba60636a2f5fa24e56f68e74ad3c6b0dcd44996e8904097f343961d8"
+      sha256 "e685d4b6597bd58487874cf35eaaccd4ca6a4fae14622e5d00cc7c0e803aee37"
       url "#{GitHubPrivateRepo.release_asset_url("v#{version}", "tdu-cli_#{version}_linux_arm64.tar.gz")}",
         header: [
           "Accept: application/octet-stream",
